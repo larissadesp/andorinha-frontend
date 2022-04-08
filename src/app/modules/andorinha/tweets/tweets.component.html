@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Andorinha</h3>
+            </div>
+            <div class="col-lg-6">
+                <ol class="breadcrumb pull-right">
+                    <li class="breadcrumb-item"><i class="fa fa-home"></i>
+                    </li>
+                    <li class="breadcrumb-item">Início</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-body bg-novo-tweet">
+                   <form #form="ngForm" (ngSubmit)="publicar(form)">
+                    <textarea type="text" class="form-control" required name="textoNovoTweet" [(ngModel)]="tweet.conteudo"
+                        placeholder="O que está acontecendo?" rows="3">
+                    </textarea>
+                    
+                    <button type="submit" class="btn btn-primary" id="btnPulicar">Publicar</button>
+                </form>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Recentes</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 ml-2 mb-3" *ngFor="let tweet of tweets">
+            <div class="card tweet-card">
+                <div class="card-header tweet-header">
+                    <div>
+                        <span class="tweet-name">{{tweet.usuario.nome}}</span>
+                        <span class="message-data-time pull-right f-14">{{tweet.data | date: 'dd/MM/yyyy HH:mm'}}</span>
+                    </div>
+                </div>
+                <div class="card-body  p-l-0">
+                    <p class="mb-0"> {{tweet.conteudo}} </p>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary mr-1" (click)="darLike(tweet)">
+                        <i class="fa fa-thumbs-up">  {{tweet.curtidas.length}}</i>
+                    </button>
+                    <button type="button" class="btn btn-primary mr-1" (click)="darDeslike(tweet)">
+                        <i class="fa fa-thumbs-down">  {{tweet.deslikes.length}}</i>
+                    </button>
+                    <button type="button" (click)="verComentarios(tweet.id)" class="btn btn-primary mr-1" id="btnComment"> 
+                        <i class="fa fa-comment-o"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

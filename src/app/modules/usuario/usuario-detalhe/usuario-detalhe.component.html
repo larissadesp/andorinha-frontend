@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <div class="row">
+      <div class="col-lg-6">
+        <h3>Cadastro de Usuários</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 ml-2 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="form-group" [class.has-error]="!nome.valid && nome.touched" [class.has-feddback]="!nome.valid && nome.touched">
+              <label for="nome" class="control-label">Nome:</label>
+              <input type="text" name="nome" [(ngModel)]="usuario.nome" class="form-control"
+                placeholder="Informe o nome completo" required #nome="ngModel">
+                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!nome.valid && nome.touched"></span>
+                <span id="inputError2Status" class="sr-only" *ngIf="!nome.valid && nome.touched">(error)</span>
+                <div *ngIf="!nome.valid && nome.touched" class="alert alert-danger" role="alert">
+                  Preenchimento obrigatório.
+                </div>
+            </div>
+          
+            <div class="form-group" [class.has-error]="!nomeUsuario.valid && nomeUsuario.touched" [class.has-feddback]="!nomeUsuario.valid && nomeUsuario.touched">
+              <label for="nomeUsuario" class="control-label">Nome de usuário:</label>
+              <input type="string" name="nomeUsuario" [(ngModel)]="usuario.login" class="form-control"
+                placeholder="Informe o nome de usuário" required #nomeUsuario="ngModel">
+                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!nomeUsuario.valid && nomeUsuario.touched"></span>
+                <span id="inputError2Status" class="sr-only" *ngIf="!nomeUsuario.valid && nomeUsuario.touched">(error)</span>
+                <div *ngIf="!nomeUsuario.valid && nomeUsuario.touched" class="alert alert-danger" role="alert">
+                  Preenchimento obrigatório.
+                </div>
+            </div>
+          
+            <div class="mt-3 mb-3 text-right">
+              <button type="submit" (click)="cadastrar()" class="btn btn-primary" [disabled]="!f.valid">Cadastrar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
